@@ -21,12 +21,26 @@ pipeline {
         }
         stage("Build Docker Image") {
             steps {
-                echo "============image build=============="
-                    sh 'pwd'
-                    sh 'docker build -t frontend:$BUILD_NUMBER . '
-                
+                script { 
+                    dockerImage = docker.build registry + ":frontend$BUILD_NUMBER" 
+                }
             }
         }
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi $registry:frontend$BUILD_NUMBER"
+                sh 'rm -rf ./*'
+            }
+        } 
     }
 
 }
