@@ -3,7 +3,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     environment { 
-        registry = "YourDockerhubAccount/YourRepository" 
+        registry = "avvppro/dtester" 
         registryCredential = 'dockerhub_id' 
         dockerImage = '' 
     }
