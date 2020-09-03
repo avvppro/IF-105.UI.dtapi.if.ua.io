@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage("Make Frontend Files") {
             steps {
-                sh 'rm -rf ./frontend ./dist'
+                sh 'rm -rf ./dist'
                 sh 'ls -la'
                 sh "sed -i 's https://dtapi.if.ua/api http://balancer/dtapi g' ./src/environments/environment.prod.ts"
                 sh "sed -i 's https://dtapi.if.ua/api http://balancer/dtapi g' ./src/environments/environment.ts"
