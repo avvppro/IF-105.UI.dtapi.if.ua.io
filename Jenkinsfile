@@ -22,7 +22,7 @@ pipeline {
         stage("Build Docker Image") {
             steps {
                 script { 
-                    dockerImage = docker.build registry + ":frontend$BUILD_NUMBER" 
+                    dockerImage = docker.build registry + ":dtester_frontend" 
                 }
             }
         }
@@ -37,8 +37,7 @@ pipeline {
         } 
         stage('Cleaning up') { 
             steps { 
-                sh "docker rmi $registry:frontend$BUILD_NUMBER"
-                sh 'rm -rf ./*'
+                sh "docker rmi $registry:dtester_frontend"
             }
         } 
     }
