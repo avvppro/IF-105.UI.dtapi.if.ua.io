@@ -13,8 +13,8 @@ pipeline {
             steps {
                 sh 'rm -rf ./dist'
                 sh 'ls -la'
-                sh "sed -i 's https://dtapi.if.ua/api http://balancer/dtapi g' ./src/environments/environment.prod.ts"
-                sh "sed -i 's https://dtapi.if.ua/api http://balancer/dtapi g' ./src/environments/environment.ts"
+                sh "sed -i 's https://dtapi.if.ua/api http://172.33.0.5/dtapi g' ./src/environments/environment.prod.ts"
+                sh "sed -i 's https://dtapi.if.ua/api http://172.33.0.5/dtapi g' ./src/environments/environment.ts"
                 sh 'npm install'
                 sh 'ng build --prod'
             }
