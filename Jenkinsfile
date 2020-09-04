@@ -20,7 +20,7 @@ pipeline {
         stage("Run tests") {
             steps {
                 sh "export CHROME_BIN='/usr/bin/chromium'"
-                sh 'ng test  --browsers ChromeHeadless --code-coverage=true'
+                sh 'ng test  --browsers ChromeHeadless --watch=false --code-coverage=true'
             }
         }
         stage("Run build") {
