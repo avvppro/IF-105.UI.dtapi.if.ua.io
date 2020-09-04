@@ -9,15 +9,19 @@ pipeline {
     }
     agent any
     stages {
-        stage("Make Frontend Files") {
+        stage("Copy Frontend Files") {
             steps {
                 sh 'rm -rf ./dist'
-                sh 'ls -la'
                 sh "sed -i 's https://dtapi.if.ua/api http://172.33.0.5/dtapi g' ./src/environments/environment.prod.ts"
                 sh "sed -i 's https://dtapi.if.ua/api http://172.33.0.5/dtapi g' ./src/environments/environment.ts"
                 sh 'npm install'
-                sh 'ng test --watch=false --browsers ChromeHeadless'
                 sh 'ng build --prod'
+            }
+        }
+        stage("Run tests") {
+            steps {
+                sh "export CHROME_BIN='/usr/bin/chromium'"
+                sh 'ng test --watch=false --browsers ChromeHeadless'
             }
         }
         stage("Build Docker Image") {
