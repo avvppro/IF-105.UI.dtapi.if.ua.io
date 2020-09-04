@@ -21,7 +21,7 @@ pipeline {
         stage("Run tests") {
             steps {
                 sh "export CHROME_BIN='/usr/bin/chromium'"
-                sh 'ng test  --browsers ChromeHeadlessCI --code-coverage=true --single-run=true'
+                sh 'ng test  --browsers ChromeHeadlessCI --code-coverage=true'
             }
         }
         stage("Build Docker Image") {
