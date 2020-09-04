@@ -21,7 +21,7 @@ pipeline {
         stage("Run tests") {
             steps {
                 sh "export CHROME_BIN='/usr/bin/chromium'"
-                sh 'ng test --watch=false --browsers ChromeHeadless'
+                sh 'ng test'
             }
         }
         stage("Build Docker Image") {
