@@ -10,7 +10,9 @@ COPY ./dist/IF105/* /var/www/localhost/htdocs/
 COPY ./.htaccess /var/www/localhost/htdocs/
 # Acess for web users
 RUN chown apache. -R /var/www/localhost/htdocs/
+# Entrypoint for credentials
+RUN chmod +x /var/www/localhost/htdocs/dtapi/entrypoint.sh
 # Run httpd in foreground so that the container does not quit
 CMD ["-D","FOREGROUND"]
 # Start httpd when container runs
-ENTRYPOINT ["/usr/sbin/httpd"]
+ENTRYPOINT ["/var/www/localhost/htdocs/dtapi/entrypoint.sh", "/usr/sbin/httpd"]
