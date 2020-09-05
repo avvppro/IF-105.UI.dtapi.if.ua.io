@@ -9,7 +9,7 @@ pipeline {
     }
     agent any
     stages {
-        stage("Copy Frontend Files") {
+        stage("Install npm Modules") {
             steps {
                 sh 'rm -rf ./dist'
                 sh 'npm install'
