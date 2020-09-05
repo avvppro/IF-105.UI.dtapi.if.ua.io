@@ -15,4 +15,4 @@ RUN chmod +x /var/www/localhost/htdocs/dtapi/entrypoint.sh
 # Run httpd in foreground so that the container does not quit
 CMD ["-D","FOREGROUND"]
 # Start httpd when container runs
-ENTRYPOINT ["/var/www/localhost/htdocs/dtapi/entrypoint.sh", "/usr/sbin/httpd"]
+ENTRYPOINT ["/var/www/localhost/htdocs/entrypoint.sh", "/usr/sbin/httpd"]
