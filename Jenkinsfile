@@ -9,9 +9,10 @@ pipeline {
     }
     agent any
     stages {
-        stage("Install npm Modules") {
+        stage("Prepare files") {
             steps {
                 sh 'rm -rf ./dist'
+                sh "sed -i 's https://dtapi.if.ua/api http://192.0.0.0/dtapi g' ./src/environments/environment.prod.ts"
                 sh 'npm install'
             }
         }
@@ -26,7 +27,7 @@ pipeline {
                 sh 'ng build --prod'
             }
         }
-        stage("Build Docker Image") {
+        stage("Build Docker image") {
             steps {
                 script { 
                     dockerImage = docker.build registry + ":dtester_frontend" 
