@@ -6,7 +6,7 @@ RUN apk add --no-cache apache2
 RUN sed -i '265s/AllowOverride None/AllowOverride All/g' /etc/apache2/httpd.conf 
 RUN sed -i "s%#LoadModule rewrite_module%LoadModule rewrite_module%g" /etc/apache2/httpd.conf
 # Copy frontend files
-COPY ./dist/IF105/* /var/www/localhost/htdocs/
+COPY ./dist/IF105/ /var/www/localhost/htdocs/
 COPY ./.htaccess /var/www/localhost/htdocs/
 COPY ./entrypoint.sh /entrypoint.sh
 # Acess for web users

@@ -12,7 +12,6 @@ pipeline {
         stage("Prepare files") {
             steps {
                 sh 'rm -rf ./dist'
-                sh "sed -i 's https://dtapi.if.ua/api http://192.0.0.0/dtapi g' ./src/environments/environment.prod.ts"
                 sh 'npm install'
             }
         }
