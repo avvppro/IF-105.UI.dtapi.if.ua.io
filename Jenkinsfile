@@ -3,7 +3,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     environment { 
-        registry = "avvppro/dtester" 
+        registry = "avvppro/dt-front" 
         registryCredential = 'dockerhub_id' 
         dockerImage = '' 
     }
@@ -29,7 +29,7 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 script { 
-                    dockerImage = docker.build("dtester_frontend:${env.BUILD_ID}")
+                    dockerImage = docker.build registry + ":${env.BUILD_ID}" 
                 }
             }
         }
