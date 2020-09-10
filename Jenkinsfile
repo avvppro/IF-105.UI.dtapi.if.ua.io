@@ -29,7 +29,7 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 script { 
-                    dockerImage = docker.build registry + ":${env.BUILD_ID}" 
+                    dockerImage = docker.build registry
                 }
             }
         }
@@ -37,14 +37,16 @@ pipeline {
             steps { 
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
+                        dockerImage.push("${env.GIT_COMMIT}") 
+                        dockerImage.push("latest") 
                     }
                 } 
             }
         } 
         stage('Cleaning up') { 
             steps { 
-                sh "docker rmi $registry:${env.BUILD_ID}"
+                sh "docker rmi $registry:${env.GIT_COMMIT}"
+                sh "docker rmi $registry:latest"
             }
         } 
     }
