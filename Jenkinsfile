@@ -29,7 +29,7 @@ pipeline {
         stage("Build Docker image") {
             steps {
                 script { 
-                    dockerImage = docker.build registry + ":dtester_frontend" 
+                    dockerImage = docker.build("dtester_frontend:${env.BUILD_ID}")
                 }
             }
         }
